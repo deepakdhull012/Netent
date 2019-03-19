@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="col-md-6 col-sm-12">
+      <h3>Pick A Game Below</h3>
+      <app-select-game 
+        [items]="gameList"
+        [selectedItems]="selectedGamesList"
+        [dropDownConfiguration]="dropdownSettings"
+        (onSeletionChange)="seletionChanged($event)"
+        >
+      </app-select-game>
+  </div>
+
+  <div class="game-list col-md-6 col-sm-12">
+      <h3>Selected Games</h3>
+    <div class="game-name" *ngFor="let game of selectedGamesList">{{game.gameName}}</div>
+  </div>
+  
+
+</div>
+
+
+

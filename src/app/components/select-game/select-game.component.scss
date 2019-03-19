@@ -1,0 +1,84 @@
+.dropdown{
+  cursor:pointer;
+}
+
+.dropdown-header{
+  border: 1px solid #ccc;
+}
+
+.dropdown-placeholder {
+  font-size: 1.5rem;
+}
+.dropdown-icon {
+  top: -10px;
+}
+
+.dropdown-list-section {
+  border: 1px solid #ccc;
+    transition: 1s all ease;
+}
+.games-list-holder {
+    list-style: none;
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+
+  .games-list-holder li {
+    border-top: 1px solid #ccc;
+    padding: 10px; 
+  }
+
+  .games-list-holder :nth-child(1) {
+    border: none;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .select-all{
+    padding: 10px;
+  }
+
+  .filter-box {
+    padding: 10px;
+    position: relative;
+  }
+
+  .remove-filtertext-icon {
+    top: 14px;
+    right: 10px;
+  }
+
+  input {
+    cursor: pointer;
+    margin: 0;
+  }
+
+  .chip-holder {
+    list-style: none;
+    margin: 0;
+    width: 100%;
+  }
+  .chip-holder li {
+    float: left;
+    margin-right: 5px;
+    background: #0f5750;
+    color: white;
+    padding: 5px;
+    border-radius: 2px;
+    margin-top: 5px;
+  }
+  .more-items {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: bold;
+    padding-top: 8px;
+  }
+  .remove-icon {
+    padding-left: 5px;
+  }
+  .clearfix {
+    clear: both;
+  }
+

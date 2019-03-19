@@ -1,0 +1,51 @@
+<div class="dropdown"
+ appOuterClickManager
+(clickOutside)="onClickOutside($event)">
+  <!-- Dropdown header which contains dropdwon placeholder, selected chips and expand icons-->
+  <div class="dropdown-header" (click)="isExpanded=!isExpanded">
+    <span class="dropdown-placeholder" *ngIf="seletedItems.length === 0">{{configuration.placeholder}}</span>
+    
+    <!-- Section For Displayed Chips-->
+    <ul class="chip-holder pull-left">
+      <ng-container *ngFor="let chip of seletedItems; let i= index;" (click)="chipClicked($event)">
+        <li *ngIf="i<configuration.itemsShowLimit">
+        <span>{{chip[configuration.displayField]}}</span>
+        <span class="glyphicon glyphicon-remove remove-icon" (click)="removeChip(chip, $event)"></span>
+      </li>
+      </ng-container>
+      <div class="clearfix"></div>
+      <span class="more-items" *ngIf="seletedItems.length>configuration.itemsShowLimit">+{{seletedItems.length - configuration.itemsShowLimit}} More</span>
+
+    </ul>
+
+
+    <div class="clearfix"></div>
+    <span *ngIf="!isExpanded" class="glyphicon glyphicon-chevron-down pull-right dropdown-icon"></span>
+    <span *ngIf="isExpanded" class="glyphicon glyphicon-chevron-up pull-right dropdown-icon"></span>
+  </div>
+
+<!-- Dropdown list which gets displayed on dropdown expansion -->
+  <div *ngIf="isExpanded" [@fadeInOut] class="dropdown-list-section">
+
+    <!-- Section For Select All/ Unselect Checkbox-->
+    <div *ngIf="configuration.allowSelectAllOption" class="full-width select-all">
+      <input type="checkbox" [checked]="allSelected" #selectAll (change)="allSelection($event.target.checked)" />
+      <span *ngIf="!allSelected">{{configuration.selectAllText}}</span>
+      <span *ngIf="allSelected">{{configuration.unSelectAllText}}</span>
+    </div>
+
+    <!-- Section For Filter -->
+
+    <input *ngIf="configuration.allowSearchFilter" class="full-width filter-box" #filter type="text" (input)="filterItems(filter.value)"
+      placeholder="{{configuration.filterText}}">
+
+      <!-- Section For Dropdown options -->
+    <ul class="games-list-holder">
+      <li *ngFor="let item of filteredItems;let i=index;">
+        <input type="checkbox" [checked]="item.isSelected" [value]="item[configuration.valueField]"
+          (change)="checkChange($event.target.checked, item)">{{item[configuration.displayField]}}
+      </li>
+    </ul>
+  </div>
+
+</div>
