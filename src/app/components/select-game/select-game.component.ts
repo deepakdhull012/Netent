@@ -68,7 +68,7 @@ export class SelectGameComponent implements OnInit{
     let allRecordsOk = true;
     for(let item of value) {
       let dataKeys = Object.keys(item);
-      if(!(dataKeys.includes(this.configuration.valueField) && dataKeys.includes(this.configuration.displayField))) {
+      if(!(dataKeys.indexOf(this.configuration.valueField)>=0 && dataKeys.indexOf(this.configuration.displayField)>=0)) {
         allRecordsOk = false;
         break;
       }
