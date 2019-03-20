@@ -2,13 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
 import { SharedModule } from './modules/shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { SelectedGamesComponent } from './components/selected-games/selected-games.component';
 
+/**
+   * The App module enclosing all the functionality
+   * @export
+   * @class AppModule
+   * @type Module
+   */
 @NgModule({
   declarations: [
     AppComponent,

@@ -30,8 +30,8 @@
     <!-- Section For Select All/ Unselect Checkbox-->
     <div *ngIf="configuration.allowSelectAllOption" class="full-width select-all">
       <input type="checkbox" [checked]="allSelected" #selectAll (change)="allSelection($event.target.checked)" />
-      <span *ngIf="!allSelected">{{configuration.selectAllText}}</span>
-      <span *ngIf="allSelected">{{configuration.unSelectAllText}}</span>
+      <span class="checkbox-right-content" *ngIf="!allSelected">{{configuration.selectAllText}}</span>
+      <span class="checkbox-right-content" *ngIf="allSelected">{{configuration.unSelectAllText}}</span>
     </div>
 
     <!-- Section For Filter -->
@@ -43,7 +43,8 @@
     <ul class="games-list-holder">
       <li *ngFor="let item of filteredItems;let i=index;">
         <input type="checkbox" [checked]="item.isSelected" [value]="item[configuration.valueField]"
-          (change)="checkChange($event.target.checked, item)">{{item[configuration.displayField]}}
+          (change)="checkChange($event.target.checked, item)">
+          <span class="display-value">{{item[configuration.displayField]}}</span>
       </li>
     </ul>
   </div>

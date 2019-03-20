@@ -1,10 +1,30 @@
 # Netent
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.2.
+This project was built using Angular version 7.3.2.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## About The Project
+
+This project is about a custom `Configurable` drop down which accepts dataset with generic keys i.e.(we can specify keys for our data in configuration object).
+It takes 3 inputs
+a) List Of Items
+b) List Of Selected Items
+c) Configuration Object containing 
+	i) Key for the value of item
+	ii)Key for the display value of item
+	iii) Placeholder label
+	iv) Select All Text Label
+	v) Unselect all Text Label
+	vi)Option to enable/disable select/unselect option
+	vii) Option to disable filter
+	viii) Filter text
+	
+d) The components emit the list of selected items whenever the selection changes
+
+The component is very dynamic , re-usable and flexible.
 
 ## Code scaffolding
 

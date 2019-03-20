@@ -24,15 +24,19 @@
       list-style: none;
       max-height: 300px;
       overflow-y: scroll;
+      width: 100%;
+      margin-bottom: 0;
     }
   
     .games-list-holder li {
       border-top: 1px solid #ccc;
-      padding: 10px; 
+      padding: 10px;
+      vertical-align: bottom;
     }
   
     .games-list-holder :nth-child(1) {
       border: none;
+      vertical-align: bottom;
     }
   
     .full-width {
@@ -46,6 +50,9 @@
     .filter-box {
       padding: 10px;
       position: relative;
+      border: none;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
     }
   
     .remove-filtertext-icon {
@@ -83,6 +90,18 @@
     }
     .clearfix {
       clear: both;
+    }
+    .display-value {
+      padding-left: 10px;
+      vertical-align: top;
+    }
+    .checkbox-right-content {
+      vertical-align: top;
+      padding-left: 10px;
+    }
+
+    input[type=çheckbox] {
+      vertical-align: bottom;
     }
   
   
