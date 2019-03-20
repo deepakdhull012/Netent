@@ -1,60 +1,54 @@
 import { Component, OnInit } from '@angular/core';
 import { IGame } from './interfaces/game.interface';
 import { IConfiguration } from './interfaces/configuration.interface';
+import { GameService } from './services/game.service';
+import { CommonService } from './services/common.service';
+
+/**
+   * Root Component 
+   * @export
+   * @class AppComponent
+   * @implements { OnInit }
+   */
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent implements OnInit {
 
-  gameList = [];
+  gameList: IGame[] = [];    
   selectedGamesList: IGame[] = [];
-  dropdownSettings: IConfiguration = <IConfiguration>{};
+  dropdownSettings: IConfiguration = <IConfiguration>{}; // To Customize The Dropdown e.g. hiding filter or no of chips to be displayed
 
 
-  constructor() {
+  constructor(
+    private gameServie: GameService,
+    private commonService: CommonService
+    ) {
 
   }
+
+  /**
+   * Fetch Initial Data Set and Configurations
+   * @memberof AppComponent
+   */
 
   ngOnInit() {
-    this.gameList = [
-      { gameId: '1011', gameName: 'Draculla' },
-      { gameId: '1012', gameName: 'Lost Relics' },
-      { gameId: '1013', gameName: 'Gonzo\'s Quest' },
-      { gameId: '1014', gameName: 'Warlords'},
-      { gameId: '1015', gameName: 'Elements'},
-      { gameId: '1016', gameName: 'Twin Spin'},
-      { gameId: '1017', gameName: 'Criket' },
-      { gameId: '1018', gameName: 'Lost Relics' },
-      { gameId: '1019', gameName: 'Gonzo\'s Quest' },
-      { gameId: '1020', gameName: 'Warlords'},
-      { gameId: '1021', gameName: 'Elements'},
-      { gameId: '1022', gameName: 'Twin Spin'}
-    ];
-
-    this.selectedGamesList = [
-      { gameId: '1011', gameName: 'Draculla' }
-    ];
-
-    this.dropdownSettings = {
-      valueField: 'gameId',
-      displayField: 'gameName',
-      placeholder: 'Select Game',
-      selectAllText: 'Select All Games',
-      unSelectAllText: 'Unselect All Games',
-      filterText: 'Search Games',
-      allowSelectAllOption: true,
-      itemsShowLimit: 3,
-      allowSearchFilter: true,
-
-    };
+    this.gameList = this.gameServie.getAllGames();
+    this.selectedGamesList = this.gameServie.getSelectedGames();
+    this.dropdownSettings = this.commonService.getDropDownConfig();
   }
+
+  /**
+   * Callback for selection changed event of custom drop down
+   * @memberof AppComponent
+   * @param(items: [])
+   */
 
   seletionChanged(items) {
     this.selectedGamesList = items;
   }
-  
-  
 }

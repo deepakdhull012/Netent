@@ -1,38 +1,50 @@
 import { Directive, OnInit, OnDestroy, Output, EventEmitter, ElementRef } from '@angular/core';
 import { fromEvent, Observable } from 'rxjs';
-import { delay,tap } from 'rxjs/operators';
+import { delay, tap } from 'rxjs/operators';
 
-
+/**
+ * Diretive To handle outer click for any element
+ * @export
+ * @class OuterClickManagerDirective
+ * @implements { OnInit, OnDestroy }
+ */
 @Directive({
   selector: '[appOuterClickManager]'
 })
-export class OuterClickManagerDirective implements OnInit, OnDestroy{
+export class OuterClickManagerDirective implements OnInit, OnDestroy {
 
-  constructor(private _elRef:ElementRef) {
+  private listening: boolean;
+  private documentCliks$;
+
+  constructor(private _elRef: ElementRef) {
     this.listening = false;
     this.clickOutside = new EventEmitter();
-   }
-  private listening:boolean;
-  private globalClick$;
-
-  @Output('clickOutside') clickOutside:EventEmitter<Object>;
-
-
-  ngOnInit() {
-    this.globalClick$ = fromEvent(document, 'click').pipe(
-      delay(1)).subscribe((e:Event)=>{
-        this.listening = true;
-        this.onGlobalClick(e);
-    });
-
-
   }
 
+  @Output('clickOutside') clickOutside: EventEmitter<Object>;
 
-  onGlobalClick(event:Event) {
+  /**
+   * This Method is called to start listening to click events on document
+   * @memberof OuterClickManagerDirective
+   */
+
+  ngOnInit() {
+    this.documentCliks$ = fromEvent(document, 'click').pipe(
+      delay(1)).subscribe((e: Event) => {
+        this.listening = true;
+        this.onGlobalClick(e);
+      });
+  }
+
+  /**
+   * This Method is called on document click 
+   * @memberof OuterClickManagerDirective
+   */
+
+  onGlobalClick(event: Event) {
     if (event instanceof MouseEvent && this.listening === true) {
-      
-      if(this.isDescendant(this._elRef.nativeElement, event.target) === true) {
+
+      if (this.isDescendant(this._elRef.nativeElement, event.target) === true) {
         this.clickOutside.emit({
           target: (event.target || null),
           value: false
@@ -47,6 +59,10 @@ export class OuterClickManagerDirective implements OnInit, OnDestroy{
   }
 
 
+  /**
+   * This Method is used to check whether a node is descendent of another node
+   * @memberof OuterClickManagerDirective
+   */
 
   isDescendant(parent, child) {
     let node = child;
@@ -60,8 +76,13 @@ export class OuterClickManagerDirective implements OnInit, OnDestroy{
     return false;
   }
 
+  /**
+   * This Method is used to unsubscribe the Global Click Observable
+   * @memberof OuterClickManagerDirective
+   */
+
   ngOnDestroy() {
-    this.globalClick$.unsubscribe();
+    this.documentCliks$.unsubscribe();
   }
 
 }

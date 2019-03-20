@@ -3,20 +3,22 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
+import { SharedModule } from './modules/shared/shared.module';
+
 import { AppComponent } from './app.component';
-import { SelectGameComponent } from './components/select-game/select-game.component';
-import { OuterClickManagerDirective } from './directives/outer-click-manager.directive';
+import { SelectedGamesComponent } from './components/selected-games/selected-games.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SelectGameComponent,
-    OuterClickManagerDirective
+    SelectedGamesComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
