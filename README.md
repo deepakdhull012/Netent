@@ -9,17 +9,29 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ## About The Project
 
 This project is about a custom `Configurable` drop down which accepts dataset with generic keys i.e.(we can specify keys for our data in configuration object).
+
 It takes 3 inputs
+
 a) List Of Items
+
 b) List Of Selected Items
+
 c) Configuration Object containing 
+
 	i) Key for the value of item
+
 	ii)Key for the display value of item
+
 	iii) Placeholder label
+
 	iv) Select All Text Label
+
 	v) Unselect all Text Label
+
 	vi)Option to enable/disable select/unselect option
+
 	vii) Option to disable filter
+
 	viii) Filter text
 	
 d) The components emit the list of selected items whenever the selection changes
