@@ -30,7 +30,7 @@ describe('CustomDropDownComponent', () => {
    
     component.items = myService.getAllGames();
 
-      component.seletedItems = myService.getSelectedGames();
+      component.selectedItems = myService.getSelectedGames();
     component.configuration = commonservice.getDropDownConfig();
     fixture.detectChanges();
     // spyOn(component, 'checkChange');
@@ -45,25 +45,27 @@ describe('CustomDropDownComponent', () => {
 
   it('should expect selected Items to be empty on unselecting the only item', async() => {
     component.checkChange(false, component.items[0]);
-    expect(component.seletedItems).toEqual([]);
+    expect(component.selectedItems).toEqual([]);
   });
 
   it('should expect selected Items to be added', async() => {
     component.checkChange(true, component.items[0]);
-    expect(component.seletedItems).toEqual([{gameId: '1011', gameName: 'Draculla'}]);
+    expect(component.selectedItems).toEqual([{gameId: '1011', gameName: 'Draculla'}]);
+  });
+
+  // Check Un Select All Functionality
+  it('should unselect all the elements', async() => {
+    component.allSelection(false);
+    expect(component.selectedItems.length).toEqual(0);
   });
 
   // Check Select All Functionality
   it('should select all the elements', async() => {
     component.allSelection(true);
-    expect(component.seletedItems.length).toEqual(component.items.length);
+    expect(component.selectedItems.length).toEqual(component.items.length);
   });
 
-  // Check Select All Functionality
-  it('should unselect all the elements', async() => {
-    component.allSelection(false);
-    expect(component.seletedItems.length).toEqual(0);
-  });
+  
 
   // Check Filter Functionality
   it('should filter elements with value and check if return correct results', async() => {
@@ -72,7 +74,14 @@ describe('CustomDropDownComponent', () => {
     for(let index in filterTerms){
       component.filterItems(filterTerms[index]);
       expect(component.filteredItems.length).toEqual(noOfItems[index]);
-    }
-    
+    }   
+  });
+
+  // Remove Chip on click
+  // First select all elements and then remove chip and check if selected items length reduced by 1 
+  it('should remove chip from selected array', async() => {
+    component.allSelection(true);
+    component.removeChip(component.selectedItems[0],{stopPropagation:()=>{}});
+      expect(component.selectedItems.length).toEqual(component.items.length-1);   
   });
 });

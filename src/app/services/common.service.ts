@@ -24,7 +24,7 @@ export class CommonService {
       filterText: 'Search Games',
       allowSelectAllOption: true,
       allowSearchFilter: true,
-      itemsShowLimit: 5,
+      itemsShowLimit: 10,
     };
   }
 }

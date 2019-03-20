@@ -28,7 +28,7 @@ import { style, animate, transition, trigger } from '@angular/animations';
 export class CustomDropDownComponent implements OnInit {
 
   @Input('items') items;
-  @Input('selectedItems') seletedItems;
+  @Input('selectedItems') selectedItems;
   @Input('dropDownConfiguration') configuration: IConfiguration;
   @Output('onSeletionChange') selectionChanged = new EventEmitter<[]>();
 
@@ -46,12 +46,12 @@ export class CustomDropDownComponent implements OnInit {
 
   ngOnInit() {
     // Validate Input Data Set
-    if (this.validInputDataSet(this.items) && this.validInputDataSet(this.seletedItems)) {
+    if (this.validInputDataSet(this.items) && this.validInputDataSet(this.selectedItems)) {
       // Modify Input Data Set Format compatible to Custom Combo box
       this.generateCompatibileItems();
 
       // Check If all items are selected or not
-      if ((this.seletedItems.length === this.comboItems.length) && this.seletedItems.length > 0) {
+      if ((this.selectedItems.length === this.comboItems.length) && this.selectedItems.length > 0) {
         this.allSelected = true;
       }
       // To Handle Improper itemshowlimit in configuration Starts Here 
@@ -107,7 +107,7 @@ export class CustomDropDownComponent implements OnInit {
    */
 
   isInSelectedItems(item) {
-    return this.seletedItems.filter((it) => {
+    return this.selectedItems.filter((it) => {
       return item[this.configuration.valueField] == it[this.configuration.valueField];
     }).length ? true : false;
   }
@@ -142,13 +142,13 @@ export class CustomDropDownComponent implements OnInit {
     const selectedList = this.filteredItems.filter((item) => {
       return item.isSelected;
     });
-    this.seletedItems = selectedList.map((listItem) => {
+    this.selectedItems = selectedList.map((listItem) => {
       let temp = Object.assign({}, listItem);
       delete temp['isSelected'];
       return temp;
     })
     this.allSelected = isSelectAll;
-    this.selectionChanged.emit(this.seletedItems);
+    this.selectionChanged.emit(this.selectedItems);
 
   }
 
@@ -162,13 +162,13 @@ export class CustomDropDownComponent implements OnInit {
     const selectedList = this.comboItems.filter((item) => {
       return item.isSelected;
     });
-    this.seletedItems = selectedList.map((listItem) => {
+    this.selectedItems = selectedList.map((listItem) => {
       let temp = Object.assign({}, listItem);
       delete temp['isSelected'];
       return temp;
     })
-    this.allSelected = this.seletedItems.length === this.comboItems.length;
-    this.selectionChanged.emit(this.seletedItems);
+    this.allSelected = this.selectedItems.length === this.comboItems.length;
+    this.selectionChanged.emit(this.selectedItems);
   }
 
   /**
@@ -185,9 +185,9 @@ export class CustomDropDownComponent implements OnInit {
    * @memberof CustomDropDownComponent
    */
 
-  removeChip(chip, e: Event) {
+  removeChip(chip, e) {
     e.stopPropagation();
-    this.seletedItems = this.seletedItems.filter((item) => {
+    this.selectedItems = this.selectedItems.filter((item) => {
       return chip[this.configuration.valueField] != item[this.configuration.valueField];
     });
     this.filteredItems = this.filteredItems.map((item) => {
@@ -196,8 +196,8 @@ export class CustomDropDownComponent implements OnInit {
       }
       return item;
     });
-    this.allSelected = this.seletedItems.length === this.comboItems.length;
-    this.selectionChanged.emit(this.seletedItems);
+    this.allSelected = this.selectedItems.length === this.comboItems.length;
+    this.selectionChanged.emit(this.selectedItems);
   }
 
   /**

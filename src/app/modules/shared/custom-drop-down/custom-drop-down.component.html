@@ -2,19 +2,19 @@
  appOuterClickManager
 (clickOutside)="onClickOutside($event)">
   <!-- Dropdown header which contains dropdwon placeholder, selected chips and expand icons-->
-  <div class="dropdown-header" (click)="isExpanded=!isExpanded">
-    <span class="dropdown-placeholder" *ngIf="seletedItems.length === 0">{{configuration.placeholder}}</span>
+  <div class="dropdown-header" (click)="isExpanded=!isExpanded;filteredItems=comboItems;">
+    <span class="dropdown-placeholder" *ngIf="selectedItems.length === 0">{{configuration.placeholder}}</span>
     
     <!-- Section For Displayed Chips-->
     <ul class="chip-holder pull-left">
-      <ng-container *ngFor="let chip of seletedItems; let i= index;" (click)="chipClicked($event)">
+      <ng-container *ngFor="let chip of selectedItems; let i= index;" (click)="chipClicked($event)">
         <li id="chip{{i}}" *ngIf="i<configuration.itemsShowLimit">
         <span>{{chip[configuration.displayField]}}</span>
         <span class="glyphicon glyphicon-remove remove-icon" (click)="removeChip(chip, $event)"></span>
       </li>
       </ng-container>
       <div class="clearfix"></div>
-      <span class="more-items" *ngIf="seletedItems.length>configuration.itemsShowLimit">+{{seletedItems.length - configuration.itemsShowLimit}} More</span>
+      <span class="more-items" *ngIf="selectedItems.length>configuration.itemsShowLimit">+{{selectedItems.length - configuration.itemsShowLimit}} More</span>
 
     </ul>
 
