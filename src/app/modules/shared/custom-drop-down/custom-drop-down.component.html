@@ -8,7 +8,7 @@
     <!-- Section For Displayed Chips-->
     <ul class="chip-holder pull-left">
       <ng-container *ngFor="let chip of seletedItems; let i= index;" (click)="chipClicked($event)">
-        <li *ngIf="i<configuration.itemsShowLimit">
+        <li id="chip{{i}}" *ngIf="i<configuration.itemsShowLimit">
         <span>{{chip[configuration.displayField]}}</span>
         <span class="glyphicon glyphicon-remove remove-icon" (click)="removeChip(chip, $event)"></span>
       </li>

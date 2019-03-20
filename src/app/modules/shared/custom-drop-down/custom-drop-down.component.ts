@@ -158,13 +158,10 @@ export class CustomDropDownComponent implements OnInit {
    */
 
   checkChange(val, item) {
-    console.log(val,item)
-    console.log(this.comboItems)
     item.isSelected = val;
     const selectedList = this.comboItems.filter((item) => {
       return item.isSelected;
     });
-    console.log('List', selectedList)
     this.seletedItems = selectedList.map((listItem) => {
       let temp = Object.assign({}, listItem);
       delete temp['isSelected'];
@@ -172,7 +169,6 @@ export class CustomDropDownComponent implements OnInit {
     })
     this.allSelected = this.seletedItems.length === this.comboItems.length;
     this.selectionChanged.emit(this.seletedItems);
-    console.log(this.comboItems)
   }
 
   /**

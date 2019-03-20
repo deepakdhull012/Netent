@@ -33,21 +33,46 @@ describe('CustomDropDownComponent', () => {
       component.seletedItems = myService.getSelectedGames();
     component.configuration = commonservice.getDropDownConfig();
     fixture.detectChanges();
-    spyOn(component, 'checkChange');
-    spyOn(component, 'validInputDataSet');
+    // spyOn(component, 'checkChange');
+    // spyOn(component, 'validInputDataSet');
+    
+    
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should expect selected Items to be empty on unselecting the only item', async() => {
     component.checkChange(false, component.items[0]);
-    component.validInputDataSet(component.items);
+    expect(component.seletedItems).toEqual([]);
   });
 
-  it('should create', async() => {
-    expect(component.checkChange).toHaveBeenCalledWith(false, component.items[0]);
+  it('should expect selected Items to be added', async() => {
+    component.checkChange(true, component.items[0]);
+    expect(component.seletedItems).toEqual([{gameId: '1011', gameName: 'Draculla'}]);
   });
 
-  it('should validate input data set', async() => {
-    expect(component.validInputDataSet).toHaveBeenCalledWith(component.items);
+  // Check Select All Functionality
+  it('should select all the elements', async() => {
+    component.allSelection(true);
+    expect(component.seletedItems.length).toEqual(component.items.length);
   });
 
-  // it('should expect selected Items to be empty', async() => {
-  //   expect(component.seletedItems).toEqual([]);
-  // });
+  // Check Select All Functionality
+  it('should unselect all the elements', async() => {
+    component.allSelection(false);
+    expect(component.seletedItems.length).toEqual(0);
+  });
+
+  // Check Filter Functionality
+  it('should filter elements with value and check if return correct results', async() => {
+    let filterTerms = ['Draculla', 'Elements'];
+    let noOfItems = [1,2];
+    for(let index in filterTerms){
+      component.filterItems(filterTerms[index]);
+      expect(component.filteredItems.length).toEqual(noOfItems[index]);
+    }
+    
+  });
 });
