@@ -38,6 +38,16 @@ d) The components emit the list of selected items whenever the selection changes
 
 The component is very dynamic , re-usable and flexible.
 
+## Browser Coverage
+
+1. Google Chrome v72
+
+2. Internet Explorer v11
+
+3. Edge
+
+4. Mobile - Samsung Galaxy S8 and other emulators
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
