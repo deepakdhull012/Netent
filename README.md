@@ -18,11 +18,11 @@ b) List Of Selected Items
 
 c) Configuration Object containing 
 
-	i) Key for the value of item
+	i) Key for the value of item e.g gameId
 
-	ii)Key for the display value of item
+	ii)Key for the display value of item e.g gameName
 
-	iii) Placeholder label
+	iii) Placeholder label e.g. Select game
 
 	iv) Select All Text Label
 
@@ -33,6 +33,8 @@ c) Configuration Object containing
 	vii) Option to disable filter
 
 	viii) Filter text
+	
+	ix) No Of selected Chips to display e.g 5
 	
 d) The components emit the list of selected items whenever the selection changes
 
